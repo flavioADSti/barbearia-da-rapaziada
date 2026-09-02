@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Barbearia da Rapaziada</title>
+
+    <style>
+        button {
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 12px 25px;
+            background-color: white;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #333;
+            color: white;
+            border: 1px solid white;
+        }
+        #botaoAgendar {
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }
+        #resultadoAgendamento {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid white;
+            font-size: 18px;
+            font-weight: bold;
+            color: lightgreen;
+        }
+
+        .logo img {
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 0 15px white;
+            transition: 0.3s;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+            transition: 0.3s;
+        }
+
+        @media (max-width: 600px) {
+            .logo img {
+                width: 140px;
+                height: 140px;
+            }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        .servico {
+            width: 90%;
+            box-sizing: border-box;
+        }
+
+        input,
+        select {
+            width: 90%;
+            box-sizing: border-box;
+        }  
+    }
+
+        h1 {
+            color: white;
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        body {
+            background-color: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            
+        }
+        .servico {
+            border: 1px solid white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px auto;
+            width: 300px;
+            text-align: center;
+            font-size: 18px;
+            box-shadow: 0 0 10px white;
+            transition: 0.3s;
+
+        }
+        .servico:hover {
+            transform: scale(1.05);
+            transition: 0.3s;
+        }
+     input[type="date"] {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid white;
+            font-size: 16px;
+            margin: 5px;
+            background-color: #222;
+            color: white;
+            width: 250px;
+        }
+        h2 {
+            margin-top: 30px;
+            font-size: 28px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo">
+        <img src="logo.png" alt="logo da barbearia">
+    </div>
+
+    <h1>Olá, bem-vindo à Barbearia da Rapaziada!</h1>
+
+    <input type="text" id="nome" placeholder="Digite seu nome">
+
+    <button onclick="mostrarMensagem()">Clique aqui</button>
+
+    <p id="mensagem"></p>
+
+    <p>Cliques: <span id="contador">0</span></p>
+
+    <button onclick="contarCliques()">Clique aqui</button>
+
+    <h2>Nossos serviços</h2>
+
+    <p class="servico">✂️ Corte de cabelo - R$ 25,00</p>
+    <p class="servico">🧔 Barba - R$ 20,00</p>
+    <p class="servico">✨ Sobrancelha - R$ 5,00</p>
+    <p class="servico">💈 Pacote completo (Corte + Barba + Sobrancelha) - R$ 50,00</p>
+
+    <h2>Agende seu horário</h2>
+
+<div class="agendamento">
+
+    <label for="nomeCliente">Seu nome:</label>
+    <input type="text" id="nomeCliente" placeholder="Digite seu nome">
+
+    <br><br>
+
+    <label for="servico">Escolha o serviço:</label>
+
+    <select id="servico">
+        <option value="Corte de cabelo">Corte de cabelo</option>
+        <option value="Barba">Barba</option>
+        <option value="Sobrancelha">Sobrancelha</option>
+        <option value="Pacote completo">Pacote completo</option>
+    </select>
+
+    <br><br>
+
+    <label for="data">Escolha a data:</label>
+    <input type="date" id="data">
+
+    <br><br>
+
+    <label for="horario">Escolha o horaio:</label>
+
+    <input type="time" id="horario">
+
+    <button id="botaoAgendar" onclick="agendar()">Agendar horário</button>
+
+    <p id="resultadoAgendamento"></p>
+</div>
+
+    <script>
+
+        function mostrarMensagem() {
+            let nome = document.getElementById("nome").value;
+
+            document.getElementById("mensagem").textContent =
+                "Olá, " + nome + "!";
+        }
+
+
+        let cliques = 0;
+
+        function contarCliques() {
+            cliques++;
+
+            document.getElementById("contador").textContent =
+                cliques;
+        }
+
+
+        function agendar() {
+            let nome = document.getElementById("nomeCliente").value;
+
+            if (nome==="") {
+                alert("Digite seu nome antes de agendar!");
+                return;
+            }
+
+            let servico = document.getElementById("servico").value;
+
+            if (servico==="") {
+                alert("Escolha um servico antes de agendar!");
+                return;
+            }
+
+            let data = document.getElementById("data").value;
+
+            if (data==="") {
+                alert("Escolha uma data antes de agendar!");
+                return;
+            }
+
+            let horario = document.getElementById("horario").value;
+
+            if (horario==="") {
+                alert("Escolha em horario antes de agendar!");
+                return;s
+            }
+
+            let hoje = new Date().toISOString().split("T")[0];
+
+            if (data < hoje) {
+                alert("Escoha uma data valida!");
+                return; 
+            }
+            
+            let preco = "";
+
+            if (servico === "Corte de cabelo") {
+                preco = "R$ 25,00";
+            } else if (servico === "Barba") {
+                preco = "R$ 20,00";
+            } else if (servico === "Sobrancelha") {
+                preco = "R$ 5,00";
+            } else if (servico === "Pacote completo") {
+                preco = "R$ 50,00";
+            }
+
+            document.getElementById("resultadoAgendamento").textContent =
+            "✅ Agendamento realizado! " + nome + " - " + servico + " - " + data + " - " + preco + " as " + horario;
+
+            document.getElementById("nomeCliente").value = "";
+            document.getElementById("data").value = "";
+            document.getElementById("servico").selectedIndex = 0;
+            document.getElementById("horario").value = "";
+        }
+
+    </script>
+
+</body>
+
+</html>
