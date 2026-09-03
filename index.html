@@ -78,9 +78,30 @@
         input,
         select {
             width: 90%;
-            box-sizing: border-box;
-        }  
-    }
+            box-sizing: border-box;}
+        }
+
+    body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('fundo-barbearia.jpg');
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;   
+        }
+
+        .agendamento {
+            background-color: rgba(0, 0, 0, 0.70);
+            padding: 25px;
+            margin: 30px auto;
+            max-width: 500px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
 
         h1 {
             color: white;
@@ -88,13 +109,7 @@
             margin-bottom: 30px;
             text-transform: uppercase;
         }
-        body {
-            background-color: #111;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            
-        }
+
         .servico {
             border: 1px solid white;
             border-radius: 10px;
@@ -255,8 +270,49 @@
                 preco = "R$ 50,00";
             }
 
-            document.getElementById("resultadoAgendamento").textContent =
-            "✅ Agendamento realizado! " + nome + " - " + servico + " - " + data + " - " + preco + " as " + horario;
+        
+        let agendamentos =
+        JSON.parse(localStorage.getItem("agendamentos") || "[]"
+        );
+
+        agendamentos.push({
+            nome: nome,
+            servico: servico,
+            data: data,
+            horario: horario,
+        });
+
+        localStorage.setItem(
+            "agendamentos", 
+            JSON.stringify(agendamentos)
+        );
+
+        // MENSAGEM PARA O WHATSAPP
+        let mensagemWhatsapp =Agendamento =
+            "💈 *Novo Agendamento - Barbearia da Rapaziada*%0A%0A" +
+        "👨🏻‍💼 Cliente: " + nome + "%0A" +
+        "💇‍♂️ Serviço: " + servico + "%0A" +
+        "📅 Data: " + data + "%0A" +
+        "⏰ Horário: " + horario + "%0A" +
+        "💰 Preço: " + preco;
+
+        // NUMERO DO WHATSAPP DO BARBEIRO
+        let numeroWhatsapp = "5561991777405";
+
+        //CRIAR LINK DO WHATSAPP
+        let linkWhatsapp =
+            "https://wa.me/" +
+            numeroWhatsapp +
+            "?text=" +
+            mensagemWhatsapp;
+
+            //ABRIR WHATSAPP
+    window.open(linkWhatsapp, "_blank");
+
+        //MOSTRAR CONFIRMACAO NO SITE
+        document.getElementById("resultadoAgendamento").innerText =
+            "✅ Agendamento realizado!\n"
+            + nome + " - " + servico + " - " + data + " - " + preco + " as " + horario;
 
             document.getElementById("nomeCliente").value = "";
             document.getElementById("data").value = "";
