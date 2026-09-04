@@ -10,26 +10,38 @@
             border-radius: 8px;
             cursor: pointer;
             padding: 12px 25px;
+
             background-color: white;
             color: black;
+
             font-size: 18px;
             font-weight: bold;
+
             transition: 0.3s;
-        }
+
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }    
 
         button:hover {
             background-color: #333;
             color: white;
-            border: 1px solid white;
+            transform: scale(1.05);
         }
         #botaoAgendar {
             margin-top: 20px;
-            padding: 12px 25px;
-            font-size: 18px;
+            padding: 10px 20px;
+            font-size: 16px;
             border-radius: 8px;
             border: none;
             cursor: pointer;
+            background-color: #333;
+            color: white;
         }
+
+        #botaoAgendar:hover {
+            transform: scale(1.05);
+        }
+
         #resultadoAgendamento {
             margin-top: 20px;
             padding: 15px;
@@ -38,6 +50,7 @@
             font-size: 18px;
             font-weight: bold;
             color: lightgreen;
+            box-shadow: 0 0 15px rgba(144, 238, 144, 0.4);
         }
 
         .logo img {
@@ -57,7 +70,6 @@
 
         .logo img:hover {
             transform: scale(1.05);
-            transition: 0.3s;
         }
 
         @media (max-width: 600px) {
@@ -68,6 +80,7 @@
 
         h1 {
             font-size: 28px;
+            text-shadow: 0 0 10px black;
         }
 
         .servico {
@@ -75,11 +88,29 @@
             box-sizing: border-box;
         }
 
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
         input,
         select {
             width: 90%;
-            box-sizing: border-box;}
+            box-sizing: border-box;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 15px;
         }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            box-shadow: 0 0 8px white;
+        }
+    }
 
     body {
             margin: 0;
@@ -105,9 +136,11 @@ background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('fund
 
         h1 {
             color: white;
-            font-size: 36px;
-            margin-bottom: 30px;
+            font-size: 28px;
+            margin-bottom: 20px;
             text-transform: uppercase;
+            text-align: center;
+            width: 100%;
         }
 
         .servico {
@@ -140,6 +173,8 @@ background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('fund
             margin-top: 30px;
             font-size: 28px;
             color: white;
+            text-align: center;
+            width: 100%;
         }
     </style>
 </head>
@@ -150,16 +185,6 @@ background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('fund
     </div>
 
     <h1>Olá, bem-vindo à Barbearia da Rapaziada!</h1>
-
-    <input type="text" id="nome" placeholder="Digite seu nome">
-
-    <button onclick="mostrarMensagem()">Clique aqui</button>
-
-    <p id="mensagem"></p>
-
-    <p>Cliques: <span id="contador">0</span></p>
-
-    <button onclick="contarCliques()">Clique aqui</button>
 
     <h2>Nossos serviços</h2>
 
@@ -193,7 +218,7 @@ background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('fund
 
     <br><br>
 
-    <label for="horario">Escolha o horaio:</label>
+    <label for="horario">Escolha o horario:</label>
 
     <input type="time" id="horario">
 
